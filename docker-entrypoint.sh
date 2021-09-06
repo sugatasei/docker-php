@@ -3,19 +3,19 @@ set -e
 
 if [[ -d /tmp/.ssh ]]
 then
-    
+
 cp -R /tmp/.ssh /root/.ssh
-chmod 700 /root/.ssh
-chmod 600 /root/.ssh/*
-chmod 644 /root/.ssh/*.pub
+find /root/.ssh -type d -exec chmod 0700 {} \;
+find /root/.ssh -type f -exec chmod 0600 {} \;
+find /root/.ssh -type f -name "*.pub" -exec chmod 0644 {} \;
 
 fi
 
 if [[ -d /tmp/cron ]]
 then
-    
+
 cp /tmp/cron/* /etc/cron.d
-chmod 644 /etc/cron.d/*.pub
+find /etc/cron.d -type f -exec chmod 0644 {} \;
 
 fi
 
